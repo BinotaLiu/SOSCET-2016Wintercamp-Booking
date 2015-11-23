@@ -46,25 +46,25 @@ class Event extends CI_Controller {
         }
 
         $data = [];
-        $data['name'] = $this->input->post['name'];
-        $data['phone'] = $this->input->post['phone'];
-        $data['email'] = $this->input->post['email'];
-        $data['school'] = $this->input->post['school'];
-        $data['personal_id'] = $this->input->post['personal_id'];
-        $data['birthday'] = $this->input->post['birthday'];
-        $data['school'] = $this->input->post['school'];
-        $data['sex'] = $this->input->post['sex'];
-        $data['garment_size'] = $this->input->post['garment_size'];
-        $data['emergency_contact'] = $this->input->post['emergency_contact'];
-        $data['emergency_relationship'] = $this->input->post['emergency_relationship'];
-        $data['emergency_phone'] = $this->input->post['emergency_phone'];
-        $data['eating'] = $this->input->post['eating'];
-        $data['eating_other'] = $this->input->post['eating_other'];
-        $data['other_details'] = $this->input->post['other_details'];
-        $data['beneficiary'] = $this->input->post['beneficiary'];
-        $data['beneficiary_relationship'] = $this->input->post['beneficiary_relationship'];
-        $data['beneficiary_phone'] = $this->input->post['beneficiary_phone'];
-        $data['invite_code'] = $this->input->post['invite_code'];
+        $data['name'] = $this->input->post('name');
+        $data['phone'] = $this->input->post('phone');
+        $data['email'] = $this->input->post('email');
+        $data['school'] = $this->input->post('school');
+        $data['personal_id'] = $this->input->post('personal_id');
+        $data['birthday'] = $this->input->post('birthday');
+        $data['school'] = $this->input->post('school');
+        $data['sex'] = $this->input->post('sex');
+        $data['garment_size'] = $this->input->post('garment_size');
+        $data['emergency_contact'] = $this->input->post('emergency_contact');
+        $data['emergency_relationship'] = $this->input->post('emergency_relationship');
+        $data['emergency_phone'] = $this->input->post('emergency_phone');
+        $data['eating'] = $this->input->post('eating');
+        $data['eating_other'] = $this->input->post('eating_other');
+        $data['other_details'] = $this->input->post('other_details');
+        $data['beneficiary'] = $this->input->post('beneficiary');
+        $data['beneficiary_relationship'] = $this->input->post('beneficiary_relationship');
+        $data['beneficiary_phone'] = $this->input->post('beneficiary_phone');
+        $data['invite_code'] = $this->input->post('invite_code');
 
         $data['paid'] = false;
 
