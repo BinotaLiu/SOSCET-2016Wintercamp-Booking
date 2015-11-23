@@ -23,7 +23,7 @@ class Event extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', '姓名', 'required');
-        $this->form_validation->set_rules('email', '電子郵件', 'required|');
+        $this->form_validation->set_rules('email', '電子郵件', 'required');
         $this->form_validation->set_rules('phone', '電話', 'regex_match[/0[2-9]\d{7,8}/]');
         $this->form_validation->set_rules('personal_id', '身份證字號', 'regex_match[/[A-Z]\d+/]');
         $this->form_validation->set_rules('birthday', '出生年月日', 'regex_match[/(20([02468][1235679]|[13579][01345789])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-8])))|20([02468][048]|[13579][26])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-9]))))/]');
@@ -37,6 +37,7 @@ class Event extends CI_Controller {
         $this->form_validation->set_rules('beneficiary', '保險受益人', 'required');
         $this->form_validation->set_rules('beneficiary_relationship', '保險受益人關係', 'required');
         $this->form_validation->set_rules('beneficiary_phone', '保險受益人電話', 'require|regex_match[/0[2-9]\d{7,8}/]');
+        $this->form_validation->set_rules('invite_code', '邀請代碼', 'alnum');
 
         if ($this->form_validation->run() === false) {
             $this->output->set_content_type('application/json')
@@ -63,6 +64,7 @@ class Event extends CI_Controller {
         $data['beneficiary'] = $this->input->post['beneficiary'];
         $data['beneficiary_relationship'] = $this->input->post['beneficiary_relationship'];
         $data['beneficiary_phone'] = $this->input->post['beneficiary_phone'];
+        $data['invite_code'] = $this->input->post['invite_code'];
 
         $data['paid'] = false;
 
