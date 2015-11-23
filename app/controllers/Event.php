@@ -214,52 +214,20 @@ class Event extends CI_Controller {
                     case 800:
                         //AIO 付款成功
                         $this->model_booking->editBooking($id, ['paid' => true]);
-                        $this->model_booking->addPayment([
-                          'booking' => $id,
-                          'payment_type' => $aio_feedback['PaymentType'],
-                          'amount' => $aio_feedback['TradeAmt'],
-                          'allpay' => $aio_feedback['TradeNo'],
-                          'payment_at' => strtotime($aio_feedback['PaymentDate']),
-                          'created_at' => strtotime($aio_feedback['TradeDate']),
-                          'messages' => '付款成功'
-                        ]);
+                        $messages = '付款成功';
                         break;
                     case 2:
                         //ATM 取號成功
-                        $this->model_booking->addPayment([
-                          'booking' => $id,
-                          'payment_type' => $aio_feedback['PaymentType'],
-                          'amount' => $aio_feedback['TradeAmt'],
-                          'allpay' => $aio_feedback['TradeNo'],
-                          'payment_at' => strtotime($aio_feedback['PaymentDate']),
-                          'created_at' => strtotime($aio_feedback['TradeDate']),
-                          'messages' => "ATM 取號成功：\n繳款銀行代碼：{$aio_feedback['BankCode']}\n繳款虛擬帳號：{$aio_feedback['vAccount']}\n繳費期限：{$aio_feedback['ExpireDate']}"
-                        ]);
+                        $messages = "ATM 取號成功：\n繳款銀行代碼：{$aio_feedback['BankCode']}\n繳款虛擬帳號：{$aio_feedback['vAccount']}\n繳費期限：{$aio_feedback['ExpireDate']}";
                         break;
                     case 10100073:
                         //CVS/BARCODE 取號成功
                         switch($aio_feedback['PaymentType']) {
                             case PaymentMethod::CVS:
-                                $this->model_booking->addPayment([
-                                  'booking' => $id,
-                                  'payment_type' => $aio_feedback['PaymentType'],
-                                  'amount' => $aio_feedback['TradeAmt'],
-                                  'allpay' => $aio_feedback['TradeNo'],
-                                  'payment_at' => strtotime($aio_feedback['PaymentDate']),
-                                  'created_at' => strtotime($aio_feedback['TradeDate']),
-                                  'messages' => "超商代碼取號成功：\n超商代碼：{$aio_feedback['PaymentNo']}\n繳費期限：{$aio_feedback['ExpireDate']}"
-                                ]);
+                                $messages = "超商代碼取號成功：\n超商代碼：{$aio_feedback['PaymentNo']}\n繳費期限：{$aio_feedback['ExpireDate']}";
                                 break;
                             case PaymentMethod::BARCODE:
-                                $this->model_booking->addPayment([
-                                  'booking' => $id,
-                                  'payment_type' => $aio_feedback['PaymentType'],
-                                  'amount' => $aio_feedback['TradeAmt'],
-                                  'allpay' => $aio_feedback['TradeNo'],
-                                  'payment_at' => strtotime($aio_feedback['PaymentDate']),
-                                  'created_at' => strtotime($aio_feedback['TradeDate']),
-                                  'messages' => "超商條碼取號成功：\n第一段條碼：{$aio_feedback['Barcode1']}\n第二段條碼：{$aio_feedback['Barcode2']}\n第二段條碼：{$aio_feedback['Barcode2']}\n繳費期限：{$aio_feedback['ExpireDate']}"
-                                ]);
+                                $messages = "超商條碼取號成功：\n第一段條碼：{$aio_feedback['Barcode1']}\n第二段條碼：{$aio_feedback['Barcode2']}\n第二段條碼：{$aio_feedback['Barcode2']}\n繳費期限：{$aio_feedback['ExpireDate']}";
                                 break;
                             default:
                                 throw new Exception('0|Invalid PaymentType');
@@ -270,6 +238,15 @@ class Event extends CI_Controller {
                         throw new Exception('0|Invalid RtnCode');
                         break;
                 }
+                $this->model_booking->addPayment([
+                    'booking' => $id,
+                    'payment_type' => $aio_feedback['PaymentType'],
+                    'amount' => $aio_feedback['TradeAmt'],
+                    'allpay' => $aio_feedback['TradeNo'],
+                    'payment_at' => strtotime($aio_feedback['PaymentDate']),
+                    'created_at' => strtotime($aio_feedback['TradeDate']),
+                    'messages' => $message
+                ]);
 
                 if($this->input->get['is_browser'] == 1) {
                     redirect("event/review/{$id}/{$token}");
