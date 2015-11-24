@@ -8,11 +8,11 @@
             </div>
             <div class="form-group">
                 <label for="phone">聯絡電話</label>
-                <input type="phone" class="form-control" name="phone" placeholder="聯絡電話" required>
+                <input type="phone" class="form-control" name="phone" placeholder="聯絡電話" pattern="^(09\d{8}|0[1-8]\d{7,8})$" required>
             </div>
             <div class="form-group">
                 <label for="personal_id">身份證字號</label>
-                <input type="text" class="form-control" name="personal_id" placeholder="身份證字號" required>
+                <input type="text" class="form-control" name="personal_id" placeholder="身份證字號" pattern="^\w\d+$" required>
             </div>
             <div class="form-group">
                 <label for="school">就讀學校</label>
@@ -21,8 +21,8 @@
             <div class="form-group">
                 <label for="sex">現在的生理性別<small>（用於住宿分房）</small></label>
                 <div>
-                    <label><input type="radio" name="sex" value="1"> 男性</label>
-                    <label><input type="radio" name="sex" value="2"> 女性</label>
+                    <label><input type="radio" name="sex" value="1" required> 男性</label>
+                    <label><input type="radio" name="sex" value="2" required> 女性</label>
                 </div>
             </div>
             <div class="form-group">
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="emergency_phone">緊急聯絡人聯絡電話</label>
-                <input type="phone" class="form-control" name="emergency_phone" placeholder="緊急聯絡人聯絡電話" required>
+                <input type="phone" class="form-control" name="emergency_phone" placeholder="緊急聯絡人聯絡電話" pattern="^(09\d{8}|0\d[1-8]{7,8})$" required>
             </div>
             <div class="form-group">
                 <label for="same_as_emergency"><input type="checkbox" name="same_as_emergency"> 緊急聯絡人同保險受益人</label>
@@ -70,7 +70,7 @@
             </div>
             <div class="form-group">
                 <label for="beneficiary_relationship">保險受益人聯絡電話</label>
-                <input type="phone" class="form-control" name="beneficiary_phone" placeholder="保險受益人聯絡電話" required>
+                <input type="phone" class="form-control" name="beneficiary_phone" placeholder="保險受益人聯絡電話" pattern="^(09\d{8}|0\d[1-8]{7,8})$" required>
             </div>
             <div class="alert alert-warning" role="alert">
                 <p><b>注意！</b> 若您未滿 20 歲，緊急聯絡人與保險受益人需為您的監護人！</p>
