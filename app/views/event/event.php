@@ -75,8 +75,6 @@
             <div class="alert alert-warning" role="alert">
                 <p><b>注意！</b> 若您未滿 20 歲，緊急聯絡人與保險受益人需為您的監護人！</p>
             </div>
-        </div>
-        <div class="col-sm-12">
             <p class="text-right">送出報名表格即代表您同意<a href="#">《個人資料蒐集與利用條款》</a>與<a href="#">《報名須知》</a></p>
             <div class="pull-right">
                 <button type="submit" class="btn btn-lg btn-success">確認無誤，立即報名！</button>
