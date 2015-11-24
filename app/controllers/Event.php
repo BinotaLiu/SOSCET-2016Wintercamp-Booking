@@ -6,7 +6,8 @@ class Event extends CI_Controller {
 
     public function index() {
         $this->load->helper('form');
-        $this->load->view('event/event');
+        $content = $this->load->view('event/event', null, true);
+        $this->load->view('layouts/master', ['content' => $content]);
     }
 
     public function review($id, $token) {
