@@ -5,6 +5,10 @@
     <title>報名系統 - 開源！資訊萌芽營！ - SOSCET</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="csrf-param" content="<?php echo $this->security->get_csrf_token_name(); ?>">
+    <meta name="csrf-token" content="<?php echo $this->security->get_csrf_hash(); ?>">
+
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
