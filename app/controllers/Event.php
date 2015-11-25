@@ -24,20 +24,19 @@ class Event extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', '姓名', 'required');
-        $this->form_validation->set_rules('email', '電子郵件', 'required');
-        $this->form_validation->set_rules('phone', '電話', 'regex_match[/0[2-9]\d{7,8}/]');
-        $this->form_validation->set_rules('personal_id', '身份證字號', 'regex_match[/[A-Z]\d+/]');
-        $this->form_validation->set_rules('birthday', '出生年月日', 'regex_match[/((20|19)([02468][1235679]|[13579][01345789])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-8])))|(20|19)([02468][048]|[13579][26])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-9]))))/]');
+        $this->form_validation->set_rules('email', '電子郵件', 'required|valid_email');
+        $this->form_validation->set_rules('phone', '電話', ['required', 'regex_match[/0([2-8]\d{7,8}|9\d{8})/]']);
+        $this->form_validation->set_rules('personal_id', '身份證字號', 'required|regex_match[/\w\d+/]');
+        $this->form_validation->set_rules('birthday', '出生年月日', ['required', 'regex_match[/((20|19)([02468][1235679]|[13579][01345789])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-8])))|(20|19)([02468][048]|[13579][26])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-9]))))/]']);
         $this->form_validation->set_rules('school', '就讀學校', 'required');
-        $this->form_validation->set_rules('sex', '性別', 'in_list[1,2]');
-        $this->form_validation->set_rules('garment_size', '衣服尺寸', 'numeric');
+        $this->form_validation->set_rules('sex', '性別', 'required|in_list[1,2]');
+        $this->form_validation->set_rules('garment_size', '衣服尺寸', 'required|numeric');
         $this->form_validation->set_rules('emergency_contact', '緊急聯絡人', 'required');
         $this->form_validation->set_rules('emergency_relationship', '緊急聯絡人關係', 'required');
-        $this->form_validation->set_rules('emergency_phone', '緊急聯絡人電話', 'required|regex_match[/0[2-9]\d{7,8}/]');
-        $this->form_validation->set_rules('eating', '飲食習慣', 'in_list[1,2,9]');
+        $this->form_validation->set_rules('emergency_phone', '緊急聯絡人電話', ['required', 'regex_match[/0([2-8]\d{7,8}|9\d{8})/]']);
         $this->form_validation->set_rules('beneficiary', '保險受益人', 'required');
         $this->form_validation->set_rules('beneficiary_relationship', '保險受益人關係', 'required');
-        $this->form_validation->set_rules('beneficiary_phone', '保險受益人電話', 'require|regex_match[/0[2-9]\d{7,8}/]');
+        $this->form_validation->set_rules('beneficiary_phone', '保險受益人電話', ['required', 'regex_match[/0([2-8]\d{7,8}|9\d{8})/]']);
         $this->form_validation->set_rules('invite_code', '邀請代碼', 'alnum');
 
         if ($this->form_validation->run() === false) {
