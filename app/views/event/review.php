@@ -33,24 +33,18 @@
                 <td><?php
                         switch($booking->garment_size) {
                           case '0':
-                              echo 'SSS';
-                              break;
-                          case '1':
-                              echo 'SS';
-                              break;
-                          case '2':
                               echo 'S';
                               break;
-                          case '3':
+                          case '1':
                               echo 'M';
                               break;
-                          case '4':
+                          case '2':
                               echo 'L';
                               break;
-                          case '5':
+                          case '3':
                               echo 'XL';
                               break;
-                          case '6':
+                          case '4':
                               echo 'XXL';
                               break;
                         }

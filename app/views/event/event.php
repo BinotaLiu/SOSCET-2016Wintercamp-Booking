@@ -36,13 +36,11 @@
             <div class="form-group">
                 <label for="garment_size">衣服尺寸<small>（<a href="#">尺寸對照表</a>）</small></label>
                 <div>
-                    <label><input type="radio" name="garment_size" value="0" required> SSS</label>
-                    <label><input type="radio" name="garment_size" value="1" required> SS</label>
-                    <label><input type="radio" name="garment_size" value="2" required> S</label>
-                    <label><input type="radio" name="garment_size" value="3" required> M</label>
-                    <label><input type="radio" name="garment_size" value="4" required> L</label>
-                    <label><input type="radio" name="garment_size" value="5" required> XL</label>
-                    <label><input type="radio" name="garment_size" value="6" required> XXL</label>
+                    <label><input type="radio" name="garment_size" value="0" required> S</label>
+                    <label><input type="radio" name="garment_size" value="1" required> M</label>
+                    <label><input type="radio" name="garment_size" value="2" required> L</label>
+                    <label><input type="radio" name="garment_size" value="3" required> XL</label>
+                    <label><input type="radio" name="garment_size" value="4" required> XXL</label>
                 </div>
             </div>
             <div class="form-group">
