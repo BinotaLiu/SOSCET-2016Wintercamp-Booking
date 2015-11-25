@@ -50,7 +50,7 @@
                 <div id="eating-checkbox-group">
                     <label><input type="checkbox" name="eating[0]"> 葷食</label>
                     <label><input type="checkbox" name="eating[1]"> 純素</label>
-                    <label><input type="checkbox" name="eating[2]"> 蛋奶酥</label>
+                    <label><input type="checkbox" name="eating[2]"> 蛋奶素</label>
                     <label><input type="checkbox" name="eating[3]"> 不吃雞</label>
                     <label><input type="checkbox" name="eating[4]"> 不吃豬</label>
                     <label><input type="checkbox" name="eating[5]"> 不吃牛</label>
