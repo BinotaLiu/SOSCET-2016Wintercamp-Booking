@@ -146,7 +146,7 @@
     //Submit
     $('button[type="submit"]').click(function() {
       //Check form validation
-      if (!$('form')[0].checkValidity()) return false;
+      if (!$('form')[0].checkValidity()) return;
 
       //Preparing for post data.
       var postData = {};
