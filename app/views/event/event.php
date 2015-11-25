@@ -156,13 +156,24 @@
       postData['birthday'] = $('input[name="birthday"]').val();
       postData['school'] = $('input[name="school"]').val();
       postData['sex'] = $('input[name="sex"]:checked').val();
-      postData['other_details'] = $('input[name="other_details"]').val();
+      postData['other_details'] = $('textarea[name="other_details"]').val();
       postData['emergency_contact'] = $('input[name="emergency_contact"]').val();
       postData['emergency_phone'] = $('input[name="emergency_phone"]').val();
       postData['emergency_relationship'] = $('input[name="emergency_relationship"]').val();
       postData['beneficiary'] = $('input[name="beneficiary"]').val();
       postData['beneficiary_phone'] = $('input[name="beneficiary_phone"]').val();
       postData['beneficiary_relationship'] = $('input[name="beneficiary_relationship"]').val();
+      //(for eating[])
+      postData['eating'] = {};
+      postData['eating'][0] = $('input[name="eating[0]"]').prop('checked') ? 1 : 0;
+      postData['eating'][1] = $('input[name="eating[1]"]').prop('checked') ? 1 : 0;
+      postData['eating'][2] = $('input[name="eating[2]"]').prop('checked') ? 1 : 0;
+      postData['eating'][3] = $('input[name="eating[3]"]').prop('checked') ? 1 : 0;
+      postData['eating'][4] = $('input[name="eating[4]"]').prop('checked') ? 1 : 0;
+      postData['eating'][5] = $('input[name="eating[5]"]').prop('checked') ? 1 : 0;
+      postData['eating'][6] = $('input[name="eating[6]"]').prop('checked') ? 1 : 0;
+      postData['eating'][7] = $('input[name="eating[7]"]').prop('checked') ? 1 : 0;
+      postData['eating_other'] = $('input[name="eating_other"]').val();
 
       //Post
       $.post('<?php echo site_url('event/booking'); ?>', postData, function(data) {
