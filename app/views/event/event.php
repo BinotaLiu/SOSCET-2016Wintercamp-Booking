@@ -11,6 +11,10 @@
                 <input type="phone" class="form-control" name="phone" placeholder="聯絡電話" pattern="^(09\d{8}|0[1-8]\d{7,8})$" title="請填寫台灣地區的手機或含區碼之市內電話" required>
             </div>
             <div class="form-group">
+                <label for="email">電子郵件</label>
+                <input type="email" class="form-control" name="email" placeholder="電子郵件" pattern="^.+?@([^\.]+)+\.[^\.]+$" title="請填寫有效之電子郵件信箱" required>
+            </div>
+            <div class="form-group">
                 <label for="personal_id">身份證字號</label>
                 <input type="text" class="form-control" name="personal_id" placeholder="身份證字號" pattern="^\w\d+$" title="請填寫台灣地區之身份證字號" required>
             </div>
@@ -27,6 +31,18 @@
                 <div>
                     <label><input type="radio" name="sex" value="1" required> 男性</label>
                     <label><input type="radio" name="sex" value="2" required> 女性</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="garment_size">衣服尺寸<small>（<a href="#">尺寸對照表</a>）</small></label>
+                <div>
+                    <label><input type="radio" name="garment_size" value="0" required> SSS</label>
+                    <label><input type="radio" name="garment_size" value="1" required> SS</label>
+                    <label><input type="radio" name="garment_size" value="2" required> S</label>
+                    <label><input type="radio" name="garment_size" value="3" required> M</label>
+                    <label><input type="radio" name="garment_size" value="4" required> L</label>
+                    <label><input type="radio" name="garment_size" value="5" required> XL</label>
+                    <label><input type="radio" name="garment_size" value="6" required> XXL</label>
                 </div>
             </div>
             <div class="form-group">
@@ -152,10 +168,12 @@
       var postData = {};
       postData['name'] = $('input[name="name"]').val();
       postData['phone'] = $('input[name="phone"]').val();
+      postData['email'] = $('input[name="email"]').val();
       postData['personal_id'] = $('input[name="personal_id"]').val();
       postData['birthday'] = $('input[name="birthday"]').val();
       postData['school'] = $('input[name="school"]').val();
       postData['sex'] = $('input[name="sex"]:checked').val();
+      postData['garment_size'] = $('input[name="garment_size"]:checked').val();
       postData['other_details'] = $('textarea[name="other_details"]').val();
       postData['emergency_contact'] = $('input[name="emergency_contact"]').val();
       postData['emergency_phone'] = $('input[name="emergency_phone"]').val();
