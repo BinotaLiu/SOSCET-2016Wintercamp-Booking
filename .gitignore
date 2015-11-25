@@ -1,6 +1,7 @@
 app/config/database.php
 app/config/config.php
 app/config/allpay_payment.php
+app/config/mailgun.php
 storage/uploads
 
 vendor/

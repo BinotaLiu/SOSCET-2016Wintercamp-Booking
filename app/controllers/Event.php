@@ -1,5 +1,6 @@
 <?php
 
+
 class Event extends CI_Controller {
     const FILE_PATH = '../storage/uploads/';
     const AMOUNT = 3200;
@@ -74,10 +75,22 @@ class Event extends CI_Controller {
 
         $this->load->model('model_booking');
         list($id, $token) = $this->model_booking->addBooking($data);
+        $reviewUrl = site_url("event/review/{$id}/{$token}");
+
+        //Sending E-Mail:
+        include APPPATH . 'config/mailgun.php';
+        $mg = new Mailgun\Mailgun($mailgun_config['appkey']);
+        $mg_result = $mg->sendMessage($mailgun_config['domain'], [
+            'from' => $mailgun_config['sender'],
+            'to' => "{$data['name']} <{$data['email']}>",
+            'subject' => '感謝您報名「開源！資訊萌芽營」',
+            'text' => "Hi, {$data['name']}！\n首先感謝您報名此次活動，\n請注意，您的報名還未完成！\n請至下列位置上傳您的學生證正反面圖檔，並繳交報名費！\n{$reviewUrl}\n（如果上面的位址無法點擊，請手動複製到瀏覽器網址列貼上）\n\nSOSCET, 東部學生開源社群",
+            'html' => "Hi, {$data['name']}！<br>首先感謝您報名此次活動，<br>請注意，您的報名還未完成！<br>請至下列位置上傳您的學生證正反面圖檔，並繳交報名費！<br><a href=\"{$reviewUrl}\">{$reviewUrl}</a><br>（如果上面的位址無法點擊，請手動複製到瀏覽器網址列貼上）<br><br>SOSCET, 東部學生開源社群"
+        ]);
 
         $this->output->set_content_type('application/json')
                      ->set_output(json_encode(['success' => '已成功新增報名資料',
-                                               'redirect' => site_url("event/review/{$id}/{$token}"),
+                                               'redirect' => $reviewUrl,
                                                'id' => $id,
                                                'token' => $token]));
     }
@@ -253,6 +266,16 @@ class Event extends CI_Controller {
                     'payment_at' => strtotime($aio_feedback['PaymentDate']),
                     'created_at' => strtotime($aio_feedback['TradeDate']),
                     'message' => $message
+                ]);
+
+                //Sending E-Mail:
+                include APPPATH . 'config/mailgun.php';
+                $mg = new Mailgun\Mailgun($mailgun_config['appkey']);
+                $mg_result = $mg->sendMessage($mailgun_config['domain'], [
+                    'from' => $mailgun_config['sender'],
+                    'to' => "{$booking->name} <{$booking->email}>",
+                    'subject' => '付款狀態更新 | 開源！資訊萌芽營',
+                    'text' => "Hi, {$booking->name}！\n您的報名資料付款狀態已更新，詳情如下：\n{$message}\n\nSOSCET, 東部學生開源社群"
                 ]);
 
                 if($this->input->get('is_browser')) {
