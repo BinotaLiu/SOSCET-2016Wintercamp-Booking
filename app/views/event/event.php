@@ -58,6 +58,10 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="invite_code">邀請碼 <small>（若無則可留空）</small></label>
+                <input type="text" class="form-control" name="invite_code" placeholder="邀請碼" title="請填寫可用之邀請碼">
+            </div>
+            <div class="form-group">
                 <label for="other_details">其它注意事項<small>（非必填）</small></label>
                 <textarea class="form-control" rows="10" name="other_details" placeholder="其它注意事項（非必填）"></textarea>
             </div>
@@ -172,6 +176,7 @@
       postData['school'] = $('input[name="school"]').val();
       postData['sex'] = $('input[name="sex"]:checked').val();
       postData['garment_size'] = $('input[name="garment_size"]:checked').val();
+      postData['invite_code'] = $('input[name="invite_code"]').val();
       postData['other_details'] = $('textarea[name="other_details"]').val();
       postData['emergency_contact'] = $('input[name="emergency_contact"]').val();
       postData['emergency_phone'] = $('input[name="emergency_phone"]').val();

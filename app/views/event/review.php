@@ -3,6 +3,10 @@
     <style>
         #info-table th { text-align: right; width: 17rem; }
     </style>
+    <div class="alert alert-success">
+        <p>您的邀請碼是：<?php echo $booking->invite_code; ?></p>
+        <p>可使用此組邀請碼邀請朋友一起報名，活動當天可領取團體報名退款！</p>
+    </div>
     <div class="alert alert-warning">
         <p>為保護您的個資，下表部分資料將遮蔽處理</p>
     </div>
