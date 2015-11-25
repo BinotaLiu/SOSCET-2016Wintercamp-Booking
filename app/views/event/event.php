@@ -142,6 +142,43 @@
     $('input[name="beneficiary"], input[name="beneficiary_phone"], input[name="beneficiary_relationship"]').bind('keyup', function() {
       $('input[name="same_as_emergency"]').prop('checked', false);
     });
+
+    //Submit
+    $('button[type="submit"]').click(function() {
+      //Check form validation
+      if (!$('form')[0].checkValidity()) return false;
+
+      //Preparing for post data.
+      var postData = {};
+      postData['name'] = $('input[name="name"]').val();
+      postData['phone'] = $('input[name="phone"]').val();
+      postData['personal_id'] = $('input[name="personal_id"]').val();
+      postData['birthday'] = $('input[name="birthday"]').val();
+      postData['school'] = $('input[name="school"]').val();
+      postData['sex'] = $('input[name="sex"]:checked').val();
+      postData['other_details'] = $('input[name="other_details"]').val();
+      postData['emergency_contact'] = $('input[name="emergency_contact"]').val();
+      postData['emergency_phone'] = $('input[name="emergency_phone"]').val();
+      postData['emergency_relationship'] = $('input[name="emergency_relationship"]').val();
+      postData['beneficiary'] = $('input[name="beneficiary"]').val();
+      postData['beneficiary_phone'] = $('input[name="beneficiary_phone"]').val();
+      postData['beneficiary_relationship'] = $('input[name="beneficiary_relationship"]').val();
+
+      //Post
+      $.post('<?php echo site_url('event/booking'); ?>', postData, function(data) {
+        //If success
+        if (data.success) {
+          return window.location = data.redirect;
+        }
+
+        //Otherwise, show errors.
+        if (data.error) {
+          alert(data.error);
+        }
+      });
+
+      return false;
+    });
   });
 </script>
 
