@@ -17,9 +17,9 @@ class Model_Booking extends CI_Model {
     }
 
     public function getBooking($id, $token) {
-        $query = $this->db->get('bookings')
-                           ->where(['id' => $id,
-                                    'token' => $token]);
+        $query = $this->db->where(['id' => $id,
+                                   'token' => $token])
+                          ->get('bookings');
         return $query->row();
     }
 
@@ -31,7 +31,8 @@ class Model_Booking extends CI_Model {
 
     public function getPayments($booking) {
         $this->db->where(['booking' => $booking]);
-        $query = $this->db->get('payments');
+        $query = $this->db->where(['booking' => $booking])
+                          ->get('payments');
 
         return $query->row();
     }
