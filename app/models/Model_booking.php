@@ -26,7 +26,8 @@ class Model_Booking extends CI_Model {
     public function editBooking($id, $data) {
         if(empty($data['modified_at'])) $data['modified_at'] = time();
 
-        $this->db->replace('bookings', $data);
+        $this->db->where(['id' => $id])
+                 ->update('bookings', $data);
     }
 
     public function getPayments($booking) {

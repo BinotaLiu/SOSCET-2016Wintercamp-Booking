@@ -1,7 +1,7 @@
 <?php
 
 class Event extends CI_Controller {
-    const FILE_PATH = './storage/uploads/';
+    const FILE_PATH = '../storage/uploads/';
     const AMOUNT = 3200;
 
     public function index() {
@@ -11,11 +11,13 @@ class Event extends CI_Controller {
     }
 
     public function review($id, $token) {
+        $this->load->helper('form');
         $this->load->model('model_booking');
         $booking = $this->model_booking->getBooking($id, $token);
         if (empty($booking)) { return show_404(); }
 
-        $this->load->view('event/review', $booking);
+        $content = $this->load->view('event/review', ['booking' => $booking, 'price' => self::AMOUNT], true);
+        $this->load->view('layouts/master', ['content' => $content]);
     }
 
     public function booking() {
@@ -82,6 +84,7 @@ class Event extends CI_Controller {
         $this->load->model('model_booking');
         $booking = $this->model_booking->getBooking($id, $token);
         if (empty($booking)) { return show_404(); }
+        if (!empty($booking->card_image)) { return; } //If student card already been uploaded.
 
         $upload_config = [];
         $upload_config['upload_path'] = self::FILE_PATH;
@@ -96,8 +99,7 @@ class Event extends CI_Controller {
 
         $this->model_booking->editBooking($id, ['card_image' => $this->upload->data('file_name')]);
 
-        $this->output->set_content_type('application/json')
-                     ->set_output(json_encode(['success' => '已成功上傳學生證圖檔']));
+        redirect("event/review/{$id}/{$token}", 301);
     }
 
     public function get_card($id, $token) {
