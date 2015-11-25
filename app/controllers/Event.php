@@ -121,6 +121,7 @@ class Event extends CI_Controller {
         $this->load->model('model_booking');
         $booking = $this->model_booking->getBooking($id, $token);
         if (empty($booking)) { return show_404(); }
+        if (empty($booking->card_image)) { return; }
 
         $this->load->library('user_agent');
         $this->load->helper('allpay_payment');

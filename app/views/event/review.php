@@ -80,52 +80,65 @@
 </section>
 <section id="booking-payment" class="col-sm-12 col-md-5">
     <h2>上傳學生證</h2>
-    <?php if(empty($booking->card_image)) {
-          echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
-        <input type="file" name="card">
-        <button type="submit" class="btn btn-primary">上傳</button>
-    </form>
-    <?php } else { ?>
-    <div class="alert alert-success">
-        <p>您已上傳學生證！無需重複上傳！</p>
+    <div class="col-sm-12">
+        <div class="alert alert-warning">
+            <p>請上傳學生證正反面或在學證明之掃描檔或照片。</p>
+            <p>（大學生限用在學證明）</p>
+            <p>（允許之檔案格式：bmp/jpg/png）</p>
+        </div>
+        <?php if(empty($booking->card_image)) {
+              echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
+            <input type="file" name="card">
+            <button type="submit" class="btn btn-primary">上傳</button>
+        </form>
+        <?php } else { ?>
+        <div class="alert alert-success">
+            <p>您已上傳學生證！無需重複上傳！</p>
+        </div>
+        <?php } ?>
     </div>
-    <?php } ?>
 </section>
 <section id="booking-payment" class="col-sm-12 col-md-5">
     <h2>付款資料</h2>
     <div class="col-sm-12">
     <?php if(empty($payments)) { ?>
-        <p><a href="<?php echo site_url("event/payment/credit/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 信用卡 付款（一次付清）</a></p>
-        <p><a href="<?php echo site_url("event/payment/barcode/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商條碼 付款</a></p>
-        <p><a href="<?php echo site_url("event/payment/cvs/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商代碼 付款</a></p>
-        <p><a href="<?php echo site_url("event/payment/atm/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 ATM轉賬 付款</a></p>
-        <p><a href="<?php echo site_url("event/payment/webatm/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 WebATM 付款</a></p>
-        <h4>費用說明</h4>
-        <b>費用為 <?php echo $price; ?> + 金流手續費，各付款方式手續費如下</b>
-        <table class="table table-bordered">
-            <thead><tr>
-                <th>付款方式</th>
-                <th>手續費</th>
-                <th>總金額</th>
-            </tr></thead>
-            <tbody>
-                <tr><td>信用卡</td>
-                    <td><?php echo round(($price / 0.972) - $price); ?></td>
-                    <td><?php echo round(($price / 0.972)); ?></td></tr>
-                <tr><td>超商條碼</td>
-                    <td>25</td>
-                    <td><?php echo $price + 25; ?></td></tr>
-                <tr><td>超商代碼</td>
-                    <td>30</td>
-                    <td><?php echo $price + 30; ?></td></tr>
-                <tr><td>ATM 轉賬</td>
-                    <td><?php echo round(($price / 0.99) - $price); ?></td>
-                    <td><?php echo round(($price / 0.99)); ?></td></tr>
-                <tr><td>WebATM</td>
-                    <td><?php echo round(($price / 0.99) - $price); ?></td>
-                    <td><?php echo round(($price / 0.99)); ?></td></tr>
-            </tbody>
-        </table>
+        <?php if(empty($booking->card_image)) { ?>
+            <div class="alert alert-warning">
+                <p>請先上傳學生證圖檔後，再進行付款！</p>
+            </div>
+        <?php } else { ?>
+            <p><a href="<?php echo site_url("event/payment/credit/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 信用卡 付款（一次付清）</a></p>
+            <p><a href="<?php echo site_url("event/payment/barcode/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商條碼 付款</a></p>
+            <p><a href="<?php echo site_url("event/payment/cvs/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商代碼 付款</a></p>
+            <p><a href="<?php echo site_url("event/payment/atm/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 ATM轉賬 付款</a></p>
+            <p><a href="<?php echo site_url("event/payment/webatm/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 WebATM 付款</a></p>
+            <h4>費用說明</h4>
+            <b>費用為 <?php echo $price; ?> + 金流手續費，各付款方式手續費如下</b>
+            <table class="table table-bordered">
+                <thead><tr>
+                    <th>付款方式</th>
+                    <th>手續費</th>
+                    <th>總金額</th>
+                </tr></thead>
+                <tbody>
+                    <tr><td>信用卡</td>
+                        <td><?php echo round(($price / 0.972) - $price); ?></td>
+                        <td><?php echo round(($price / 0.972)); ?></td></tr>
+                    <tr><td>超商條碼</td>
+                        <td>25</td>
+                        <td><?php echo $price + 25; ?></td></tr>
+                    <tr><td>超商代碼</td>
+                        <td>30</td>
+                        <td><?php echo $price + 30; ?></td></tr>
+                    <tr><td>ATM 轉賬</td>
+                        <td><?php echo round(($price / 0.99) - $price); ?></td>
+                        <td><?php echo round(($price / 0.99)); ?></td></tr>
+                    <tr><td>WebATM</td>
+                        <td><?php echo round(($price / 0.99) - $price); ?></td>
+                        <td><?php echo round(($price / 0.99)); ?></td></tr>
+                </tbody>
+            </table>
+        <?php } ?>
     <?php } else { ?>
         <?php foreach($payments as $payment) { ?>
         <table class="table table-bordered"><tbody>
