@@ -3,18 +3,21 @@
     <style>
         #info-table th { text-align: right; width: 17rem; }
     </style>
+    <div class="alert alert-warning">
+        <p>為保護您的個資，下表部分資料將遮蔽處理</p>
+    </div>
     <table id="info-table" class="table table-bordered">
         <tbody>
             <tr><th>姓名：</th>
-                <td><?php echo mb_substr($booking->name, 0, 1) . str_repeat('○', mb_strlen($booking->name) - 1); ?></tr>
+                <td><?php echo htmlspecialchars(mb_substr($booking->name, 0, 1)) . str_repeat('○', mb_strlen($booking->name) - 1); ?></tr>
             <tr><th>聯絡電話：</th>
-                <td><?php echo substr($booking->phone, 0, 4) . str_repeat('*', strlen($booking->phone) - 4); ?></tr>
+                <td><?php echo htmlspecialchars(substr($booking->phone, 0, 4)) . str_repeat('*', strlen($booking->phone) - 4); ?></tr>
             <tr><th>身份證字號：</th>
-                <td><?php echo substr($booking->personal_id, 0, 4) . str_repeat('*', strlen($booking->personal_id) - 4); ?></tr>
+                <td><?php echo htmlspecialchars(substr($booking->personal_id, 0, 4)) . str_repeat('*', strlen($booking->personal_id) - 4); ?></tr>
             <tr><th>出生年月日：</th>
-                <td><?php echo substr($booking->birthday, 0, 8) . '**'; ?></tr>
+                <td><?php echo htmlspecialchars(substr($booking->birthday, 0, 8)) . '**'; ?></tr>
             <tr><th>就讀學校：</th>
-                <td><?php echo substr($booking->school, 0, 3) . str_repeat('△', mb_strlen($booking->school) - 3); ?></tr>
+                <td><?php echo htmlspecialchars(substr($booking->school, 0, 3)) . str_repeat('△', mb_strlen($booking->school) - 3); ?></tr>
             <tr><th>生理性別：</th>
                 <td><?php
                       switch($booking->sex) {
@@ -53,11 +56,11 @@
                         }
                     ?></tr>
             <tr><th>緊急聯絡人：</th>
-                <td><?php echo mb_substr($booking->emergency_contact, 0, 1) . str_repeat('○', mb_strlen($booking->emergency_contact) - 1); ?></tr>
+                <td><?php echo htmlspecialchars(mb_substr($booking->emergency_contact, 0, 1)) . str_repeat('○', mb_strlen($booking->emergency_contact) - 1); ?></tr>
             <tr><th>緊急聯絡人關係：</th>
-                <td><?php echo $booking->emergency_relationship; ?></tr>
+                <td><?php echo htmlspecialchars($booking->emergency_relationship); ?></tr>
             <tr><th>緊急聯絡人聯絡電話：</th>
-                <td><?php echo substr($booking->emergency_phone, 0, 4) . str_repeat('*', strlen($booking->emergency_phone) - 4); ?></tr>
+                <td><?php echo htmlspecialchars(substr($booking->emergency_phone, 0, 4)) . str_repeat('*', strlen($booking->emergency_phone) - 4); ?></tr>
             <tr><th>飲食習慣：</th>
                 <td><?php
                       $eating = unserialize($booking->eating);
@@ -65,36 +68,36 @@
                       foreach($eating as $i => $v) {
                           if($v) echo $eating_chinese[$i] . '<br>';
                       }
-                      if($eating[7]) echo $booking->eating_other;
+                      if($eating[7]) echo htmlspecialchars($booking->eating_other);
                     ?></tr>
             <tr><th>特殊注意事項：</th>
-                <td><?php echo $booking->other_details; ?></tr>
+                <td><?php echo nl2br(htmlspecialchars($booking->other_details)); ?></tr>
             <tr><th>保險受益人：</th>
-                <td><?php echo mb_substr($booking->beneficiary, 0, 1) . str_repeat('○', mb_strlen($booking->beneficiary) - 1); ?></tr>
+                <td><?php echo htmlspecialchars(mb_substr($booking->beneficiary, 0, 1)) . str_repeat('○', mb_strlen($booking->beneficiary) - 1); ?></tr>
             <tr><th>保險受益人關係：</th>
-                <td><?php echo $booking->beneficiary_relationship; ?></tr>
+                <td><?php echo htmlspecialchars($booking->beneficiary_relationship); ?></tr>
             <tr><th>保險受益人聯絡電話：</th>
-                <td><?php echo substr($booking->beneficiary_phone, 0, 4) . str_repeat('*', strlen($booking->beneficiary_phone) - 4); ?></tr>
+                <td><?php echo htmlspecialchars(substr($booking->beneficiary_phone, 0, 4)) . str_repeat('*', strlen($booking->beneficiary_phone) - 4); ?></tr>
         </tbody>
     </table>
 </section>
 <section id="booking-payment" class="col-sm-12 col-md-5">
     <h2>上傳學生證</h2>
     <div class="col-sm-12">
-        <div class="alert alert-warning">
-            <p>請上傳學生證正反面或在學證明之掃描檔或照片。</p>
-            <p>（大學生限用在學證明）</p>
-            <p>（允許之檔案格式：bmp/jpg/png）</p>
-        </div>
-        <?php if(empty($booking->card_image)) {
-              echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
-            <input type="file" name="card">
-            <button type="submit" class="btn btn-primary">上傳</button>
-        </form>
+        <?php if(empty($booking->card_image)) { ?>
+            <div class="alert alert-warning">
+                <p>請上傳學生證正反面或在學證明之掃描檔或照片。</p>
+                <p>（大學生限用在學證明）</p>
+                <p>（允許之檔案格式：bmp/jpg/png）</p>
+            </div>
+            <?php echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
+                <input type="file" name="card">
+                <button type="submit" class="btn btn-primary">上傳</button>
+            </form>
         <?php } else { ?>
-        <div class="alert alert-success">
-            <p>您已上傳學生證！無需重複上傳！</p>
-        </div>
+            <div class="alert alert-success">
+                <p>您已上傳學生證！無需重複上傳！</p>
+            </div>
         <?php } ?>
     </div>
 </section>
