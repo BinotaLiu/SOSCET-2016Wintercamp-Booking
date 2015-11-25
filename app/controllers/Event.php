@@ -58,7 +58,7 @@ class Event extends CI_Controller {
         $data['emergency_contact'] = $this->input->post('emergency_contact');
         $data['emergency_relationship'] = $this->input->post('emergency_relationship');
         $data['emergency_phone'] = $this->input->post('emergency_phone');
-        $data['eating'] = $this->input->post('eating');
+        $data['eating'] = serialize($this->input->post('eating'));
         $data['eating_other'] = $this->input->post('eating_other');
         $data['other_details'] = $this->input->post('other_details');
         $data['beneficiary'] = $this->input->post('beneficiary');

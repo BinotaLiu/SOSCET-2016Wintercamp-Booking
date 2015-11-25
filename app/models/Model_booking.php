@@ -6,7 +6,7 @@ class Model_Booking extends CI_Model {
         if(empty($data['created_at'])) $data['created_at'] = time();
         if(empty($data['modified_at'])) $data['modified_at'] = time();
         if(empty($data['token'])) $data['token'] = strtolower(random_string('alnum', 32));
-        if(empty($data['invite_code'])) $data['invite_code'] = strtolower(ramdom_string('alnum', 8));
+        if(empty($data['invite_code'])) $data['invite_code'] = strtolower(random_string('alnum', 8));
 
         $this->db->insert('bookings', $data);
 
