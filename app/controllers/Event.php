@@ -73,6 +73,7 @@ class Event extends CI_Controller {
 
         $this->output->set_content_type('application/json')
                      ->set_output(json_encode(['success' => '已成功新增報名資料',
+                                               'redirect' => site_url("event/review/{$id}/{$token}"),
                                                'id' => $id,
                                                'token' => $token]));
     }
