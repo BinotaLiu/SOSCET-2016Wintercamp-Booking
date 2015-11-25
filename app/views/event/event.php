@@ -8,19 +8,19 @@
             </div>
             <div class="form-group">
                 <label for="phone">聯絡電話</label>
-                <input type="phone" class="form-control" name="phone" placeholder="聯絡電話" pattern="^(09\d{8}|0[1-8]\d{7,8})$" required>
+                <input type="phone" class="form-control" name="phone" placeholder="聯絡電話" pattern="^(09\d{8}|0[1-8]\d{7,8})$" title="請填寫台灣地區的手機或含區碼之市內電話" required>
             </div>
             <div class="form-group">
                 <label for="personal_id">身份證字號</label>
-                <input type="text" class="form-control" name="personal_id" placeholder="身份證字號" pattern="^\w\d+$" required>
+                <input type="text" class="form-control" name="personal_id" placeholder="身份證字號" pattern="^\w\d+$" title="請填寫台灣地區之身份證字號" required>
             </div>
             <div class="form-group">
                 <label for="birthday">出生年月日 <small>(yyyy-mm-dd)</small></label>
-                <input type="text" class="form-control" name="birthday" placeholder="身份證字號（如 1999-01-01）" pattern="^((20|19)([02468][1235679]|[13579][01345789])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-8])))|(20|19)([02468][048]|[13579][26])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-9]))))$" required>
+                <input type="text" class="form-control" name="birthday" placeholder="身份證字號（如 1999-01-01）" pattern="^((20|19)([02468][1235679]|[13579][01345789])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-8])))|(20|19)([02468][048]|[13579][26])\-(((0[13578]|1[02])\-(0[1-9]|[12]\d|3[01]))|((0[469]|11)\-(0[1-9]|[12]\d|3[0]))|(02\-(0[1-9]|1\d|2[1-9]))))$" title="請填寫格式如 1999-01-01 格式的日期" required>
             </div>
             <div class="form-group">
                 <label for="school">就讀學校</label>
-                <input type="text" class="form-control" name="school" placeholder="就讀學校" required>
+                <input type="text" class="form-control" name="school" placeholder="就讀學校" title="請填寫您就讀的學校" required>
             </div>
             <div class="form-group">
                 <label for="sex">現在的生理性別<small>（用於住宿分房）</small></label>
@@ -51,30 +51,30 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="emergency_contact">緊急聯絡人</label>
-                <input type="text" class="form-control" name="emergency_contact" placeholder="緊急聯絡人" required>
+                <input type="text" class="form-control" name="emergency_contact" placeholder="緊急聯絡人" title="請填寫緊急聯絡人姓名" required>
             </div>
             <div class="form-group">
                 <label for="emergency_relationship">緊急聯絡人與您的關係</label>
-                <input type="text" class="form-control" name="emergency_relationship" placeholder="與緊急聯絡人之關係" required>
+                <input type="text" class="form-control" name="emergency_relationship" placeholder="與緊急聯絡人之關係" title="請填寫您與緊急聯絡人之關係（如父子等）" required>
             </div>
             <div class="form-group">
                 <label for="emergency_phone">緊急聯絡人聯絡電話</label>
-                <input type="phone" class="form-control" name="emergency_phone" placeholder="緊急聯絡人聯絡電話" pattern="^(09\d{8}|0\d[1-8]{7,8})$" required>
+                <input type="phone" class="form-control" name="emergency_phone" placeholder="緊急聯絡人聯絡電話" pattern="^(09\d{8}|0\d[1-8]{7,8})$" title="請填寫緊急聯絡人之聯絡電話，限填入台灣地區之手機號碼或含區碼之市內電話" required>
             </div>
             <div class="form-group">
                 <label for="same_as_emergency"><input type="checkbox" name="same_as_emergency"> 緊急聯絡人同保險受益人</label>
             </div>
             <div class="form-group">
                 <label for="beneficiary">保險受益人</label>
-                <input type="text" class="form-control" name="beneficiary" placeholder="保險受益人" required>
+                <input type="text" class="form-control" name="beneficiary" placeholder="保險受益人" title="請填寫保險受益人姓名" required>
             </div>
             <div class="form-group">
                 <label for="beneficiary_relationship">保險受益人與您的關係</label>
-                <input type="text" class="form-control" name="beneficiary_relationship" placeholder="與保險受益人之關係" required>
+                <input type="text" class="form-control" name="beneficiary_relationship" placeholder="與保險受益人之關係" title="請填寫您與保險受益人之關係（如父子等）" required>
             </div>
             <div class="form-group">
                 <label for="beneficiary_relationship">保險受益人聯絡電話</label>
-                <input type="phone" class="form-control" name="beneficiary_phone" placeholder="保險受益人聯絡電話" pattern="^(09\d{8}|0\d[1-8]{7,8})$" required>
+                <input type="phone" class="form-control" name="beneficiary_phone" placeholder="保險受益人聯絡電話" pattern="^(09\d{8}|0\d[1-8]{7,8})$" title="請填寫保險受益人之聯絡電話，限填入臺灣地區之手機號碼或含區碼之市內電話" required>
             </div>
             <div class="alert alert-warning" role="alert">
                 <p><b>注意！</b> 若您未滿 20 歲，緊急聯絡人與保險受益人需為您的監護人！</p>
