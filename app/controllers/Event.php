@@ -16,7 +16,9 @@ class Event extends CI_Controller {
         $booking = $this->model_booking->getBooking($id, $token);
         if (empty($booking)) { return show_404(); }
 
-        $content = $this->load->view('event/review', ['booking' => $booking, 'price' => self::AMOUNT], true);
+        $payments = $this->model_booking->getPayments($id);
+
+        $content = $this->load->view('event/review', ['booking' => $booking, 'price' => self::AMOUNT, 'payments' => $payments], true);
         $this->load->view('layouts/master', ['content' => $content]);
     }
 

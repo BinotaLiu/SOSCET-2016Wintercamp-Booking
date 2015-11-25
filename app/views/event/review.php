@@ -94,6 +94,7 @@
 <section id="booking-payment" class="col-sm-12 col-md-5">
     <h2>付款資料</h2>
     <div class="col-sm-12">
+    <?php if(empty($payments)) { ?>
         <p><a href="<?php echo site_url("event/payment/credit/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 信用卡 付款（一次付清）</a></p>
         <p><a href="<?php echo site_url("event/payment/barcode/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商條碼 付款</a></p>
         <p><a href="<?php echo site_url("event/payment/cvs/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商代碼 付款</a></p>
@@ -125,6 +126,18 @@
                     <td><?php echo round(($price / 0.99)); ?></td></tr>
             </tbody>
         </table>
+    <?php } else { ?>
+        <?php foreach($payments as $payment) { ?>
+        <table class="table table-bordered"><tbody>
+            <tr><th>時間：</th>
+                <td><?php echo date('Y-m-d H:i:s', $payment->created_at); ?></td></tr>
+            <tr><th>金額：</th>
+                <td><?php echo $payment->amount; ?></td></tr>
+            <tr><th>備註：</th>
+                <td><?php echo nl2br($payment->message); ?></td></tr>
+        </tbody></table>
+        <?php } ?>
+    <?php } ?>
     </div>
 </section>
 

@@ -35,7 +35,7 @@ class Model_Booking extends CI_Model {
         $query = $this->db->where(['booking' => $booking])
                           ->get('payments');
 
-        return $query->row();
+        return $query->result();
     }
 
     public function addPayment($data) {
