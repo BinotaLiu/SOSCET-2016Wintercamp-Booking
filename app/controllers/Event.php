@@ -122,11 +122,11 @@ class Event extends CI_Controller {
 
         $this->load->library('user_agent');
         $this->load->helper('allpay_payment');
-        $allpay_config = $this->config->item('allpay_payment');
+        include APPPATH . 'config/allpay_payment.php';
 
         try {
             $aio = new AllInOne();
-            $aio->ServiceURL = $allpay_config['ServiceURL'];
+            $aio->ServiceURL = $allpay_config['ServiceURL'] . 'Cashier/AioCheckOut';
             $aio->HashKey = $allpay_config['HashKey'];
             $aio->HashIV = $allpay_config['HashIV'];
             $aio->MerchantID = $allpay_config['MerchantID'];
@@ -134,7 +134,7 @@ class Event extends CI_Controller {
             $aio->Send['ReturnURL'] = site_url("event/payment_return/{$id}/{$token}");
             $aio->Send['ClientBackURL'] = site_url("event/review/{$id}/{$token}");
             $aio->Send['OrderResultURL'] = site_url("event/payment_return/{$id}/{$token}") . '?is_browser=true';
-            $aio->Send['MerchantTradeNo'] = $booking['created_at'] . $booking['id'];
+            $aio->Send['MerchantTradeNo'] = $booking->created_at . $booking->id;
             $aio->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');
             switch($method) {
                 case 'credit':

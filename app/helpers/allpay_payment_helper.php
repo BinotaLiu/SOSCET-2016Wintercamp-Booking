@@ -406,7 +406,7 @@ class AllInOne {
         return;
     }
 
-    function CheckOutString($paymentButton, $target = "_self") {
+    function CheckOutString($paymentButton = null, $target = "_self") {
         // 變數宣告。
         $arErrors = array();
         $szHtml = '';
