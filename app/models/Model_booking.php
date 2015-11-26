@@ -23,6 +23,11 @@ class Model_Booking extends CI_Model {
         return $query->row();
     }
 
+    public function countBookings($where) {
+        return $this->db->where($where)
+                        ->count_all_results('bookings');
+    }
+
     public function editBooking($id, $data) {
         if(empty($data['modified_at'])) $data['modified_at'] = time();
 
