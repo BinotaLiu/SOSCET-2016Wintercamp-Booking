@@ -4,10 +4,17 @@
 class Event extends CI_Controller {
     const FILE_PATH = '../storage/uploads/';
     const AMOUNT = 3200;
+    const LIMIT = 47;
 
     public function index() {
         $this->load->helper('form');
-        $content = $this->load->view('event/event', null, true);
+        $this->load->model('model_booking');
+        //Check limit
+        if($this->model_booking->countBookings(['paid' => 1]) >= self::LIMIT) {
+            $content = $this->load->view('event/limit', null, true);
+        } else {
+            $content = $this->load->view('event/event', null, true);
+        }
         $this->load->view('layouts/master', ['content' => $content]);
     }
 
