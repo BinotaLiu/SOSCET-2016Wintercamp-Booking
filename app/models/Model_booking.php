@@ -7,6 +7,8 @@ class Model_Booking extends CI_Model {
         if(empty($data['modified_at'])) $data['modified_at'] = time();
         if(empty($data['token'])) $data['token'] = strtolower(random_string('alnum', 32));
         if(empty($data['invite_code'])) $data['invite_code'] = strtolower(random_string('alnum', 8));
+        $salt = random_string('alnum', 8);
+        $data['password'] = $salt . '$' . md5($data['password'] . $salt);
 
         $this->db->insert('bookings', $data);
 
@@ -16,11 +18,16 @@ class Model_Booking extends CI_Model {
         return [$id, $token];
     }
 
-    public function getBooking($id, $token) {
+    public function getBooking($id, $token, $password) {
         $query = $this->db->where(['id' => $id,
                                    'token' => $token])
                           ->get('bookings');
-        return $query->row();
+        $auth = explode('$', $query->row()->password);
+        if ($auth[1] == md5($password . $auth[0]) {
+            return $query->row();
+        } else {
+            return;
+        }
     }
 
     public function countBookings($where) {
