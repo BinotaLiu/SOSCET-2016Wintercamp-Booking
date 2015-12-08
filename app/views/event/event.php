@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label for="email">電子郵件</label>
-                <input type="email" class="form-control" name="email" placeholder="電子郵件" pattern="^.+?@([^\.]+)+\.[^\.]+$" title="請填寫有效之電子郵件信箱" required>
+                <input type="email" class="form-control" name="email" placeholder="電子郵件" pattern="^.+?@([^\.]+\.)+[^\.]+$" title="請填寫有效之電子郵件信箱" required>
             </div>
             <div class="form-group">
                 <label for="personal_id">身份證字號</label>
