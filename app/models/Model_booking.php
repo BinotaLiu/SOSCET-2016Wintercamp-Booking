@@ -23,7 +23,7 @@ class Model_Booking extends CI_Model {
                                    'token' => $token])
                           ->get('bookings');
         $auth = explode('$', $query->row()->password);
-        if ($auth[1] == md5($password . $auth[0]) {
+        if ($auth[1] == md5($password . $auth[0])) {
             return $query->row();
         } else {
             return;
