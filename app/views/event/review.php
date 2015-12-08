@@ -86,7 +86,7 @@
             <div class="alert alert-warning">
                 <p>請上傳學生證正反面或在學證明之掃描檔或照片。</p>
                 <p>（大學生限用在學證明）</p>
-                <p>（允許之檔案格式：bmp/jpg/png）</p>
+                <p>（允許之檔案格式：bmp/jpg/png，檔案大小以 2MB 為限）</p>
             </div>
             <?php echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
                 <input type="password" name="password" placeholder="請輸入密碼">
