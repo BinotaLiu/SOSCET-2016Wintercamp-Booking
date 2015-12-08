@@ -19,18 +19,18 @@ class Event extends CI_Controller {
     }
 
     public function review($id, $token) {
+        $this->load->helper('form');
         if ($this->input->method() === 'post') {
-            $this->load->helper('form');
             $this->load->model('model_booking');
             $booking = $this->model_booking->getBooking($id, $token, $this->input->post('password'));
             if (empty($booking)) {
-                $content = $this->load->view('event/login', ['error' => true]);
+                $content = $this->load->view('event/login', ['error' => true], true);
             } else {
                 $payments = $this->model_booking->getPayments($id);
                 $content = $this->load->view('event/review', ['booking' => $booking, 'price' => self::AMOUNT, 'payments' => $payments], true);
             }
         } else {
-            $content = $this->load->view('event/login');
+            $content = $this->load->view('event/login', ['error' => false], true);
         }
 
         $this->load->view('layouts/master', ['content' => $content]);

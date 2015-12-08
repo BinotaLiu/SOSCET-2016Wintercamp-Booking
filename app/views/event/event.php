@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="password">密碼 <small>（檢視報名資料時需要）</small></label>
-                <input type="text" class="form-control" name="password" placeholder="密碼">
+                <input type="password" class="form-control" name="password" placeholder="密碼">
             </div>
             <div class="form-group">
                 <label for="invite_code">邀請碼 <small>（若無則可留空）</small></label>
