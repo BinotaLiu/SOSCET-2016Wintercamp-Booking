@@ -6,12 +6,16 @@
   </div>
   <?php } else { ?>
   <?php } ?>
-  <div class="alert alert-notice">
+  <div class="alert alert-warning">
     <p>若您未設定密碼，則請使用預設密碼 123456</p>
   </div>
   <?php echo form_open(); ?>
-    <input type="password" name="password" placeholder="請輸入密碼">
-    <button type="submit">送出</button>
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-block">送出</button>
+    </div>
   </form>
 </div>
 
