@@ -19,14 +19,20 @@ class Event extends CI_Controller {
     }
 
     public function review($id, $token) {
-        $this->load->helper('form');
-        $this->load->model('model_booking');
-        $booking = $this->model_booking->getBooking($id, $token);
-        if (empty($booking)) { return show_404(); }
+        if ($this->input->method() === 'post') {
+            $this->load->helper('form');
+            $this->load->model('model_booking');
+            $booking = $this->model_booking->getBooking($id, $token, $this->input->post('password'));
+            if (empty($booking)) {
+                $content = $this->load->view('event/login', ['error' => true]);
+            } else {
+                $payments = $this->model_booking->getPayments($id);
+                $content = $this->load->view('event/review', ['booking' => $booking, 'price' => self::AMOUNT, 'payments' => $payments], true);
+            }
+        } else {
+            $content = $this->load->view('event/login');
+        }
 
-        $payments = $this->model_booking->getPayments($id);
-
-        $content = $this->load->view('event/review', ['booking' => $booking, 'price' => self::AMOUNT, 'payments' => $payments], true);
         $this->load->view('layouts/master', ['content' => $content]);
     }
 
@@ -50,6 +56,8 @@ class Event extends CI_Controller {
         $this->form_validation->set_rules('beneficiary_relationship', '保險受益人關係', 'required');
         $this->form_validation->set_rules('beneficiary_phone', '保險受益人電話', ['required', 'regex_match[/0([2-8]\d{7,8}|9\d{8})/]']);
         $this->form_validation->set_rules('invite_code', '邀請代碼', 'alnum');
+        $this->form_validation->set_rules('password', '密碼', 'required');
+        
 
         if ($this->form_validation->run() === false) {
             $this->output->set_content_type('application/json')
@@ -77,6 +85,7 @@ class Event extends CI_Controller {
         $data['beneficiary_relationship'] = $this->input->post('beneficiary_relationship');
         $data['beneficiary_phone'] = $this->input->post('beneficiary_phone');
         $data['invite_code'] = $this->input->post('invite_code');
+        $data['password'] = $this->input->post('password');
 
         $data['paid'] = false;
 
@@ -104,7 +113,7 @@ class Event extends CI_Controller {
 
     public function upload_card($id, $token) {
         $this->load->model('model_booking');
-        $booking = $this->model_booking->getBooking($id, $token);
+        $booking = $this->model_booking->getBooking($id, $token, $this->input->post('password'));
         if (empty($booking)) { return show_404(); }
         if (!empty($booking->card_image)) { return; } //If student card already been uploaded.
 
@@ -126,7 +135,7 @@ class Event extends CI_Controller {
 
     public function get_card($id, $token) {
         $this->load->model('model_booking');
-        $booking = $this->model_booking->getBooking($id, $token);
+        $booking = $this->model_booking->getBooking($id, $token, $this->input->post('password'));
         if (empty($booking)) { return show_404(); }
 
         if (file_exists(FILE_PATH . $booking['card_image'])) { return; }
@@ -139,7 +148,7 @@ class Event extends CI_Controller {
 
     public function payment($method, $id, $token) {
         $this->load->model('model_booking');
-        $booking = $this->model_booking->getBooking($id, $token);
+        $booking = $this->model_booking->getBooking($id, $token, $this->input->post('password'));
         if (empty($booking)) { return show_404(); }
         if (empty($booking->card_image)) { return; }
 

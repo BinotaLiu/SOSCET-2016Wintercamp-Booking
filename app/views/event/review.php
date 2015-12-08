@@ -89,6 +89,7 @@
                 <p>（允許之檔案格式：bmp/jpg/png）</p>
             </div>
             <?php echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
+                <input type="password" name="password" placeholder="請輸入密碼">
                 <input type="file" name="card">
                 <button type="submit" class="btn btn-primary">上傳</button>
             </form>
