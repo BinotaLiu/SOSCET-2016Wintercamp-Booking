@@ -89,9 +89,15 @@
                 <p>（允許之檔案格式：bmp/jpg/png，檔案大小以 2MB 為限）</p>
             </div>
             <?php echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
-                <input type="password" name="password" placeholder="請輸入密碼">
-                <input type="file" name="card">
-                <button type="submit" class="btn btn-primary">上傳</button>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+                </div>
+                <div class="form-group">
+                    <input type="file" name="card">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">上傳</button>
+                </div>
             </form>
         <?php } else { ?>
             <div class="alert alert-success">
