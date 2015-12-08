@@ -119,7 +119,7 @@ class Event extends CI_Controller {
 
         $upload_config = [];
         $upload_config['upload_path'] = self::FILE_PATH;
-        $upload_config['allowed_types'] = 'jpg|png';
+        $upload_config['allowed_types'] = 'jpg|png|bmp';
         $upload_config['max_size'] = '2048';
         $upload_config['file_ext_tolower'] = true;
         $upload_config['file_name'] = $id . '_' . $token;
