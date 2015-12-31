@@ -115,11 +115,20 @@
                 <p>請先上傳學生證圖檔後，再進行付款！</p>
             </div>
         <?php } else { ?>
-            <p><a href="<?php echo site_url("event/payment/credit/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 信用卡 付款（一次付清）</a></p>
-            <p><a href="<?php echo site_url("event/payment/barcode/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商條碼 付款</a></p>
-            <p><a href="<?php echo site_url("event/payment/cvs/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 超商代碼 付款</a></p>
-            <p><a href="<?php echo site_url("event/payment/atm/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 ATM轉賬 付款</a></p>
-            <p><a href="<?php echo site_url("event/payment/webatm/{$booking->id}/{$booking->token}"); ?>" class="btn btn-default">使用 WebATM 付款</a></p>
+            <?php echo form_open("event/payment/{$booking->id}/{$booking->token}"); ?>
+                <div class="form-group">
+                    <select name="method" class="form-control">
+                        <option value="credit">信用卡（一次付清）</option>
+                        <option value="barcode">超商條碼</option>
+                        <option value="cvs">超商代碼</option>
+                        <option value="atm">ATM轉賬</option>
+                        <option value="webatm">WebATM</option>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+                </div>
+            </form>
             <h4>費用說明</h4>
             <b>費用為 <?php echo $price; ?> + 金流手續費，各付款方式手續費如下</b>
             <table class="table table-bordered">

@@ -146,7 +146,7 @@ class Event extends CI_Controller {
                      ->set_output(file_get_contents(FILE_PATH . $booking['card_image']));
     }
 
-    public function payment($method, $id, $token) {
+    public function payment($id, $token) {
         $this->load->model('model_booking');
         $booking = $this->model_booking->getBooking($id, $token, $this->input->post('password'));
         if (empty($booking)) { return show_404(); }
@@ -168,7 +168,7 @@ class Event extends CI_Controller {
             $aio->Send['OrderResultURL'] = site_url("event/payment_return/{$id}/{$token}") . '?is_browser=true';
             $aio->Send['MerchantTradeNo'] = $booking->created_at . $booking->id;
             $aio->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');
-            switch($method) {
+            switch($this->input->post('method')) {
                 case 'credit':
                     $aio->Send['ChoosePayment'] = PaymentMethod::Credit;
                     $fee = (self::AMOUNT / 0.972) - self::AMOUNT;
