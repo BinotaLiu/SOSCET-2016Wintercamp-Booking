@@ -18,10 +18,12 @@ class Model_Booking extends CI_Model {
         return [$id, $token];
     }
 
-    public function getBooking($id, $token, $password) {
+    public function getBooking($id, $token, $password, $skipAuthentication = false) {
         $query = $this->db->where(['id' => $id,
                                    'token' => $token])
                           ->get('bookings');
+        
+        if($skipAuthentication === true) return $query->row();
         $auth = explode('$', $query->row()->password);
         if ($auth[1] == md5($password . $auth[0])) {
             return $query->row();

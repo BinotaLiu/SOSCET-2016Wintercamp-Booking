@@ -229,7 +229,7 @@ class Event extends CI_Controller {
     public function payment_return($id, $token) {
         $this->load->helper('allpay_payment');
         $this->load->model('model_booking');
-        $booking = $this->model_booking->getBooking($id, $token);
+        $booking = $this->model_booking->getBooking($id, $token, null, true);
         if (empty($booking)) { return show_404(); }
 
         $this->load->helper('allpay_payment');
@@ -303,7 +303,7 @@ class Event extends CI_Controller {
                 throw new Exception('Return Value Errors');
             }
         } catch (Exception $e) {
-            $this->output->set_output($e);
+            return show_404();
         }
     }
 }
