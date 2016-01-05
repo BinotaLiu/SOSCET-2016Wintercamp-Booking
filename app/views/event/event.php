@@ -1,5 +1,8 @@
 <section id="booking-form" class="col-sm-12">
     <h2 class="text-center">填寫報名表格</h2>
+    <div class="alert alert-info">
+      <p>目前不支援 Windows XP ，請使用 HTTPS 瀏覽本頁。</p>
+    </div>
     <form action="<?php echo site_url('event/booking'); ?>">
         <div class="col-md-6">
             <div class="form-group">
