@@ -90,7 +90,7 @@
             </div>
             <?php echo form_open_multipart("event/upload_card/{$booking->id}/{$booking->token}"); ?>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+                    <input type="password" class="form-control" name="password" placeholder="請輸入密碼" required>
                 </div>
                 <div class="form-group">
                     <input type="file" name="card">
@@ -126,7 +126,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="請輸入密碼">
+                    <input type="password" class="form-control" name="password" placeholder="請輸入密碼" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">前往付款</button>
                 </div>
             </form>
             <h4>費用說明</h4>
